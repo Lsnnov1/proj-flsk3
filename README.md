@@ -1,0 +1,1 @@
+This is the first part of a mock blog app where you can create a user, edit user profile, and delete user using flask-sqlalchemy
