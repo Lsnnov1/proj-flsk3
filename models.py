@@ -8,10 +8,11 @@ def connect_db(app):
     db.init_app(app)
 
 
-    __tablename__ = 'users'
+
 
 class User(db.Model):
     """create users schema"""
+    __tablename__ = 'users'
 
     id = db.Column(db.Integer,
                    primary_key=True,
@@ -25,11 +26,31 @@ class User(db.Model):
     
     img_url = db.Column(db.String(50),
                         nullable=True,
-                        default="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fdefault-profile-picture&psig=AOvVaw1cSE6VukWBYfPTIRBVikNn&ust=1719591855681000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPC5g_-Y_IYDFQAAAAAdAAAAABAE")
+                        default="https://www.vecteezy.com/free-vector/default-profile-picture")
     
-
+    
     def __repr__(self):
         """Shows self instance"""
         u = self
         return f"User id={u.id}, {u.first_name} {u.last_name}, {u.img_url}."
     
+class Post(db.Model):
+    """Shows user posts"""
+    __tablename__ = 'posts'
+
+    id = db.Column(db.Integer, 
+                   primary_key=True, 
+                   autoincrement=True)
+    title = db.Column(db.String(20), 
+                      nullable=False)
+    content = db.Column(db.String(100),
+                        nullable=False)
+    created_at = db.Column(db.DateTime, 
+                           nullable=False, 
+                           default=db.func.current_timestamp())
+    
+    user_id = db.Column(db.Integer, 
+                        db.ForeignKey("users.id"), 
+                        nullable=False)
+
+    user = db.relationship('User', backref=db.backref('posts'))

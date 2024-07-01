@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Post {% endblock %}
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+<a href="/posts/{{ post.id }}/edit">Edit</a>
+
+<form action="/posts/{{ post.id }}/delete" method="post" style="display:inline;">
+
+    <button type="submit">Delete</button>
+    
+</form>
+<a href="/users/{{ user.id }}">Back to User</a>
+{% endblock %}
