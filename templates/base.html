@@ -2,12 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} {% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        nav ul { list-style: none; padding: 0; }
+        nav ul li { display: inline; margin-right: 10px; }
+        .content { margin-top: 20px; }
+    </style>
 </head>
 <body>
-    <a href="/users">Home</a>
-    {% block content %} {% endblock %}
-    
+    <nav>
+        <ul>
+            <li><a href="/users">Home</a></li>
+            <li><a href="/tags">Tags</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 </html>
